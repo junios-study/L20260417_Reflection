@@ -26,4 +26,7 @@ public:
 	TArray<TSoftObjectPtr<UInputMappingContext>> IMC_Defaults;
 
 
+	UFUNCTION()
+	void DisplayCount();
+
 };

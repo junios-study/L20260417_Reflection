@@ -12,6 +12,9 @@
 
 class UBoxComponent;
 
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE(FCountSignature, AMyPawn, OnUpdateCount);
+
+
 UCLASS()
 class L20260417_REFLECTION_API AMyPawn : public APawn
 {
@@ -46,4 +49,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<class UInputAction> IA_Fire;
 
+	UFUNCTION()
+	void ProcessBeginOverlap(AActor* OverlappedActor, AActor* OtherActor);
+
+	UFUNCTION()
+	void ProcessBeginOverlap2(AActor* OverlappedActor, AActor* OtherActor);
+
+	UPROPERTY(BlueprintAssignable, Category = "UMG")
+	FCountSignature OnUpdateCount;
 };
+
+
+

@@ -4,6 +4,7 @@
 #include "MyPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputMappingContext.h"
+#include "MyPawn.h"
 
 void AMyPlayerController::OnPossess(APawn* aPawn)
 {
@@ -38,4 +39,16 @@ void AMyPlayerController::OnPossess(APawn* aPawn)
 			//MySubsystem->AddMappingContext(Context.LoadAsync(), 0);
 		}
 	}
+
+	AMyPawn* MyPawn = Cast<AMyPawn>(aPawn);
+	if (MyPawn)
+	{
+		MyPawn->OnUpdateCount.RemoveAll(this);
+		MyPawn->OnUpdateCount.AddDynamic(this, &AMyPlayerController::DisplayCount);
+	}
+}
+
+void AMyPlayerController::DisplayCount()
+{
+	UE_LOG(LogTemp, Warning, TEXT("DisplayCount"));
 }

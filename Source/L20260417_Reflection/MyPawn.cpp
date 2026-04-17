@@ -23,9 +23,9 @@ void AMyPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
-
-	//OnActorBeginOverlap
-	
+	OnActorBeginOverlap.AddDynamic(this, &AMyPawn::ProcessBeginOverlap2);
+	OnActorBeginOverlap.AddDynamic(this, &AMyPawn::ProcessBeginOverlap);
+	OnActorBeginOverlap.RemoveDynamic(this, &AMyPawn::ProcessBeginOverlap2);
 }
 
 // Called every frame
@@ -33,6 +33,7 @@ void AMyPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	OnUpdateCount.Broadcast();
 }
 
 // Called to bind functionality to input
@@ -51,5 +52,17 @@ void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void AMyPawn::Rotate(const FInputActionValue& Value)
 {
 	UE_LOG(LogTemp, Warning, TEXT("%s"), *Value.ToString());
+}
+
+
+void AMyPawn::ProcessBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+	UE_LOG(LogTemp, Warning, TEXT("ProcessBeginOverlap"));
+}
+
+void AMyPawn::ProcessBeginOverlap2(AActor* OverlappedActor, AActor* OtherActor)
+{
+	UE_LOG(LogTemp, Warning, TEXT("ProcessBeginOverlap2"));
+
 }
 
