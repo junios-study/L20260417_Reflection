@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -57,6 +57,19 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "UMG")
 	FCountSignature OnUpdateCount;
+
+	//C++에서 BP 함수 호출 하고 싶어.
+	UFUNCTION(BlueprintImplementableEvent)
+	void CallCPPToExecuteBP();
+
+	UFUNCTION(BlueprintNativeEvent)
+	void CallDefaultCPPToExecuteBP();
+	void CallDefaultCPPToExecuteBP_Implementation();
+
+	//BP 함수 제공
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "이건 내가 제공", ScriptName = "Support", Keywords = "Support"))
+	void SupportBlueprint();
+
 };
 
 

@@ -43,8 +43,8 @@ void AMyPlayerController::OnPossess(APawn* aPawn)
 	AMyPawn* MyPawn = Cast<AMyPawn>(aPawn);
 	if (MyPawn)
 	{
-		MyPawn->OnUpdateCount.RemoveAll(this);
-		MyPawn->OnUpdateCount.AddDynamic(this, &AMyPlayerController::DisplayCount);
+		//MyPawn->OnUpdateCount.RemoveAll(this);
+		//MyPawn->OnUpdateCount.AddDynamic(this, &AMyPlayerController::DisplayCount);
 	}
 }
 
